@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, key):
+    def _init_(self, key):
         self.key = key
         self.left = None
         self.right = None
@@ -7,9 +7,9 @@ class Node:
 def inorder(root):
     if root is None:
         return
-    inorder(root.right)   # ❌ Wrong order — should visit left subtree first
+    inorder(root.left)     # ✅ Visit left subtree first
     print(root.key, end=" ")
-    inorder(root.left)
+    inorder(root.right)    # ✅ Then visit right subtree
 
 # Tree Structure
 #       1
@@ -23,4 +23,4 @@ root.right = Node(3)
 root.left.left = Node(4)
 root.left.right = Node(5)
 
-inorder(root)  # Expected output: 4 2 5 1 3
+inorder(root)  # Output: 4 2 5 1 3
